@@ -4,7 +4,7 @@
 
 This exercise has been proposed by Tango Luxembourg and aims at verifying some basic Java programming skills of the candidates to developers roles.
 
-This exercise is purely a scool case and doesn't reflect, at any point, any real business case.
+This exercise is purely a school case and doesn't reflect, at any point, any real business case.
 
 ## Artifacts
 
