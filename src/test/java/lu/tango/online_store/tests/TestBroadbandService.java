@@ -19,15 +19,12 @@ public class TestBroadbandService
   @Mock
   private AvailabilityChecker availabilityChecker;
   @InjectMocks
-  private BroadbandAddOnServiceImpl broadbandAddOnService = new BroadbandAddOnServiceImpl();
+  private BroadbandAddOnService broadbandAddOnService = new BroadbandAddOnServiceImpl();
 
   @Test
   public void testShouldReturnServiceAvailable() throws  TechnicalFailureException
   {
     when (availabilityChecker.isPostCodeInServicableArea("75008")).thenReturn(AvailabilityServiceReturnCode.SERVICE_AVAILABLE.name());
-    /*when (availabilityChecker.isPostCodeInServicableArea("93800")).thenReturn(AvailabilityServiceReturnCode.SERVICE_UNAVAILABLE.name());
-    when (availabilityChecker.isPostCodeInServicableArea("75015")).thenReturn(AvailabilityServiceReturnCode.SERVICE_PLANNED.name());
-    when (availabilityChecker.isPostCodeInServicableArea("0")).thenReturn(AvailabilityServiceReturnCode.POSTCODE_INVALID.name());*/
     StandardBroadbandProduct standardBroadbandProduct = new StandardBroadbandProduct(StandardBroadbandProductCode.TANGO_INTERNET_M, StandardBroadbandProductCode.TANGO_INTERNET_M.name(), new ArrayList<AddOn>());
     List<StandardBroadbandProduct> standardBroadbandProducts = new ArrayList<>();
     standardBroadbandProducts.add(standardBroadbandProduct);
@@ -55,7 +52,7 @@ public class TestBroadbandService
   }
 
   @Test(expected = TechnicalFailureException.class)
-  public void testShouldReturnServiceUnavailable() throws  TechnicalFailureException
+  public void testShouldRaiseTechnicalFailureException() throws  TechnicalFailureException
   {
     when (availabilityChecker.isPostCodeInServicableArea("93800")).thenReturn(AvailabilityServiceReturnCode.SERVICE_UNAVAILABLE.name());
     broadbandAddOnService.checkForAddOnProducts(new Basket (new ArrayList<StandardBroadbandProduct>()), "93800");
